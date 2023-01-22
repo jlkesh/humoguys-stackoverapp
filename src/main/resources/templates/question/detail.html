@@ -36,10 +36,19 @@
                 <th:block th:each="answer : ${answers}">
                     <div class="card m-1">
                         <div class="card-body">
-                            <th:block th:if="${answer.isAccepted()}">
-                                <i class="fa fa-check fa-solid " style="color: green; font-size: 40px"></i>
-                            </th:block>
-                            <p th:text="${answer.text}"></p>
+                            <div class="row">
+                                <div class="col-1">
+                                    <th:block th:if="${answer.isAccepted()}">
+                                        <i class="fa fa-check fa-solid " style="color: green; font-size: 80px"></i>
+                                    </th:block>
+                                </div>
+                                <div class="col-11">
+                                    <p th:text="${answer.text}"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a th:href="@{'/answer/delete/'+${answer.id}+'/'}" class="btn btn-danger">Delete</a>
                         </div>
                     </div>
                 </th:block>
@@ -57,7 +66,7 @@
             </div>
             <div class="modal-body">
                 <form action="/answer/save/" method="post">
-                    <input type="hidden" name="questionId" th:value="${question.id}" />
+                    <input type="hidden" name="questionId" th:value="${question.id}"/>
                     <div class="mb-3">
                         <label for="content" class="form-label">Answer Content</label>
                         <textarea class="form-control" id="content" name="text" rows="3"></textarea>

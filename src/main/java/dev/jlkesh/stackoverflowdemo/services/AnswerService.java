@@ -32,4 +32,16 @@ public record AnswerService(AnswerRepository answerRepository, QuestionRepositor
     public List<Answer> getAnswersByQuestionId(Integer id) {
         return answerRepository.findAllByQuestionId(id);
     }
+
+    public Answer get(Integer id) {
+        return answerRepository
+                .findById(id)
+                .orElseThrow(() -> new RuntimeException("Answer not found with id '%d'".formatted(id)));
+    }
+
+    public Answer delete(Integer id) {
+        Answer answer = get(id);
+        answerRepository.deleteById(id);
+        return answer;
+    }
 }

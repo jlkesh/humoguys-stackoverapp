@@ -5,6 +5,7 @@
     <title>Create Question</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
 </head>
 
@@ -12,7 +13,7 @@
 
 <div class="row">
     <div class="col-md-8 offset-2">
-        <form method="post">
+        <form method="post" onsubmit="somefunction">
             <div class="mb-3">
                 <label for="title" class="form-label">Question Title</label>
                 <input type="text" class="form-control" name="title" id="title">
@@ -21,6 +22,7 @@
                 <label for="content" class="form-label">Question Content</label>
                 <textarea class="form-control" id="content" name="content" rows="3"></textarea>
             </div>
+
             <a href="/" class="btn btn-primary">Back</a>
             <button type="submit" class="btn btn-success">Save</button>
         </form>
@@ -30,5 +32,35 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>
+
+<script src="/js/main.js"></script>
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+<script>
+    const quill = new Quill('#editor', {
+        modules: {
+            toolbar: [
+                ['bold', 'italic', 'underline', 'strike'],
+                ['blockquote', 'code-block'],
+                [{'header': 1}, {'header': 2}],
+                [{'list': 'ordered'}, {'list': 'bullet'}],
+                [{'script': 'sub'}, {'script': 'super'}],
+                [{'indent': '-1'}, {'indent': '+1'}],
+                [{'direction': 'rtl'}],
+                [{'size': ['small', false, 'large', 'huge']}],
+                [{'header': [1, 2, 3, 4, 5, 6, false]}],
+                [{'color': []}, {'background': []}],
+                [{'font': []}],
+                [{'align': []}],
+                ['clean'],
+                ['img'],
+                ['link']
+            ]
+        },
+        placeholder: 'Compose an epic...',
+        theme: 'snow'  // or 'bubble'
+    });
+</script>
+
 </body>
 </html>

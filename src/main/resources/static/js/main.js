@@ -4,3 +4,5 @@ function change_window_to_question_details_page(id) {
     console.log(window.location)
     window.location.pathname = url;
 }
+
+
