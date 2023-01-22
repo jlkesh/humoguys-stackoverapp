@@ -61,7 +61,7 @@ public class QuestionController {
     @PostMapping(value = "/delete/{id}/")
     public String delete(@PathVariable Integer id) {
         questionService.delete(id);
-        return "index";
+        return "redirect:/";
     }
 
 }
