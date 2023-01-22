@@ -51,6 +51,13 @@ public class QuestionController {
         return "index";
     }
 
+    @GetMapping(value = "/delete/{id}/")
+    public String deletePage(@PathVariable Integer id, Model model) {
+        Question question = questionService.get(id);
+        model.addAttribute("question", question);
+        return "question/delete";
+    }
+
     @PostMapping(value = "/delete/{id}/")
     public String delete(@PathVariable Integer id) {
         questionService.delete(id);
