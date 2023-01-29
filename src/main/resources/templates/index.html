@@ -28,15 +28,18 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+                    <a class="nav-link active" aria-current="page" href="/">Admin</a>
+                </li>
+                <li class="nav-item" sec:authorize="hasAnyRole('ADMIN','MANAGER')">
+                    <a class="nav-link active" aria-current="page" href="/">Manager</a>
                 </li>
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item me-1" sec:authorize="isAnonymous()">
                     <a class="nav-link btn btn-outline-success" th:href="@{/auth/login/}">Login</a>
                 </li>
-                <li class="nav-item me-1" sec:authorize="isAnonymous()()">
+                <li class="nav-item me-1" sec:authorize="isAnonymous()">
                     <a class="nav-link btn btn-outline-primary" th:href="@{/}">Register</a>
                 </li>
                 <li class="nav-item me-1" sec:authorize="isAuthenticated()">

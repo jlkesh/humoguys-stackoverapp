@@ -15,6 +15,7 @@ import org.thymeleaf.extras.springsecurity6.dialect.SpringSecurityDialect;
 public class SecurityConfiguration {
 
     public static final String[] WHITE_LIST = {
+            "/",
             "/auth/login/",
             "/auth/logout/",
     };
@@ -38,7 +39,6 @@ public class SecurityConfiguration {
                 .password("123")
                 .roles("MANAGER", "ADMIN")
                 .build();
-
 
         return new InMemoryUserDetailsManager(user, manager, admin);
     }
@@ -74,8 +74,4 @@ public class SecurityConfiguration {
         return http.build();
     }
 
-    @Bean
-    public SpringSecurityDialect securityDialect() {
-        return new SpringSecurityDialect();
-    }
 }
