@@ -4,11 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.thymeleaf.extras.springsecurity6.dialect.SpringSecurityDialect;
 
 @Configuration
 @EnableWebSecurity
@@ -17,10 +13,11 @@ public class SecurityConfiguration {
     public static final String[] WHITE_LIST = {
             "/",
             "/auth/login/",
+            "/auth/register/",
             "/auth/logout/",
     };
 
-    @Bean
+    /*@Bean
     public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
         UserDetails user = User.withDefaultPasswordEncoder()
                 .username("user")
@@ -41,7 +38,7 @@ public class SecurityConfiguration {
                 .build();
 
         return new InMemoryUserDetailsManager(user, manager, admin);
-    }
+    }*/
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -57,8 +54,7 @@ public class SecurityConfiguration {
                 .usernameParameter("uname")
                 .passwordParameter("pswd")
                 .loginProcessingUrl("/auth/login/")
-                .defaultSuccessUrl("/", false)
-                .failureHandler((request, response, exception) -> response.sendError(401, exception.getMessage()));
+                .defaultSuccessUrl("/", false);
 
         http.rememberMe()
                 .key("SQWEFG$@TFQEWGRY#%HTG&J#*$^&EUTHGFBVCNBHDJUKRR&E^UW$Y%T$EGRTHERJ^U&Er")

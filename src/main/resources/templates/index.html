@@ -64,7 +64,7 @@
                 <div class="card-body">
                     <p th:text="${question.content}"></p>
                 </div>
-                <div class="card-footer">
+                <div class="card-footer" sec:authorize="isAuthenticated()" >
                     <a th:href="@{'/question/delete/'+${question.id}+'/'}" class="btn btn-danger">Delete</a>
                 </div>
             </div>
