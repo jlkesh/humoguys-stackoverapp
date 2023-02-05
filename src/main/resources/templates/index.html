@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
 >
 <head>
     <meta charset="UTF-8">
@@ -52,7 +52,7 @@
 
 <div class="row">
     <div class="col-md-8 offset-2">
-        <a href="/question/save/" class="btn btn-success m-2">
+        <a href="/question/save/" class="btn btn-success m-2" sec:authorize="isAuthenticated()">
             <i class="fa fa-solid fa-plus"></i>
             Add Question</a>
         <th:block th:each="question : ${questions}">

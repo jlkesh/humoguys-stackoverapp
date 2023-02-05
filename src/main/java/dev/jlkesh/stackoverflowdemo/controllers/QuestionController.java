@@ -1,12 +1,16 @@
 package dev.jlkesh.stackoverflowdemo.controllers;
 
 
+import dev.jlkesh.stackoverflowdemo.config.AuthUserDetails;
 import dev.jlkesh.stackoverflowdemo.domains.Answer;
 import dev.jlkesh.stackoverflowdemo.domains.Question;
 import dev.jlkesh.stackoverflowdemo.dtos.QuestionCreateDTO;
 import dev.jlkesh.stackoverflowdemo.dtos.QuestionUpdateDTO;
 import dev.jlkesh.stackoverflowdemo.services.AnswerService;
 import dev.jlkesh.stackoverflowdemo.services.QuestionService;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +19,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/question")
+@PreAuthorize("isAuthenticated()")
 public class QuestionController {
 
     private final QuestionService questionService;
@@ -31,7 +36,8 @@ public class QuestionController {
     }
 
     @PostMapping(value = "/save/")
-    public String save(@ModelAttribute QuestionCreateDTO dto) {
+    public String save(@ModelAttribute QuestionCreateDTO dto, @AuthenticationPrincipal(errorOnInvalidType = true) AuthUserDetails user) {
+        dto.setId(user.getAuthUser().getId());
         questionService.save(dto);
         return "redirect:/";
     }

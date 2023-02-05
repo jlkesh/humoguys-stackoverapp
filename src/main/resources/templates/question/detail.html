@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+>
 <head>
     <meta charset="UTF-8">
     <title>Question Details Page</title>
@@ -24,7 +27,6 @@
 <div class="row">
     <div class="col-md-8 offset-2">
         <div class="m-2 p-2">
-
             <h2 th:text="${question.title}"></h2>
 
             <div class="ms-5">
@@ -39,7 +41,10 @@
                             <div class="row">
                                 <div class="col-1">
                                     <th:block th:if="${answer.isAccepted()}">
-                                        <i class="fa fa-check fa-solid " style="color: green; font-size: 80px"></i>
+                                        <i class="fa fa-check fa-solid " style="color: green; font-size: 30px"></i>
+                                    </th:block>
+                                    <th:block th:unless="${answer.isAccepted()}">
+                                        <span style="color: darkorange; font-size: 30px" th:text="${answer.id}"></span>
                                     </th:block>
                                 </div>
                                 <div class="col-11">
@@ -47,7 +52,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer">
+                        <div class="card-footer" th:if="${#authentication.principal.id == answer.createdBy}">
                             <a th:href="@{'/answer/delete/'+${answer.id}+'/'}" class="btn btn-danger">Delete</a>
                         </div>
                     </div>
@@ -65,7 +70,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="/answer/save/" method="post">
+                <form th:action="@{~/answer/save/}" method="post">
                     <input type="hidden" name="questionId" th:value="${question.id}"/>
                     <div class="mb-3">
                         <label for="content" class="form-label">Answer Content</label>

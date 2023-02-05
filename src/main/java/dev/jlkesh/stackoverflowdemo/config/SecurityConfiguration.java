@@ -2,12 +2,14 @@ package dev.jlkesh.stackoverflowdemo.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity(prePostEnabled = false)
 public class SecurityConfiguration {
 
     public static final String[] WHITE_LIST = {
@@ -15,6 +17,8 @@ public class SecurityConfiguration {
             "/auth/login/",
             "/auth/register/",
             "/auth/logout/",
+            "/js/**",
+            "/css/**"
     };
 
     /*@Bean

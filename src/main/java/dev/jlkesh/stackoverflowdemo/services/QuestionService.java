@@ -28,7 +28,7 @@ public record QuestionService(QuestionRepository questionRepository) {
         var question = Question.builder()
                 .title(dto.title())
                 .content(dto.content())
-                .createdBy(-1)
+                .createdBy(dto.id())
                 .build();
         questionRepository.save(question);
         return question.getId();

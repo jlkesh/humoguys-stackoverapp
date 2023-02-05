@@ -27,11 +27,4 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("/unauthorized")
-    @ResponseStatus(HttpStatus.UNAUTHORIZED)
-    public String unauthorized(Model model) {
-        model.addAttribute("message", "Unauthorized");
-        return "error";
-    }
-
 }

@@ -8,11 +8,10 @@ import dev.jlkesh.stackoverflowdemo.repository.QuestionRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public record AnswerService(AnswerRepository answerRepository, QuestionRepository questionRepository) {
-    public Integer save(AnswerCreateDTO dto) {
+    public Integer save(AnswerCreateDTO dto, Integer userID) {
         Integer questionId = dto.questionId();
 
         Question question = questionRepository
@@ -21,7 +20,7 @@ public record AnswerService(AnswerRepository answerRepository, QuestionRepositor
 
         Answer answer = Answer.builder()
                 .text(dto.text())
-                .createdBy(-1)
+                .createdBy(userID)
                 .question(question)
                 .build();
 
