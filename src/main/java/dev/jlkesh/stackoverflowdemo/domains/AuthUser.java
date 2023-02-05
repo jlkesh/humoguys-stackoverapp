@@ -3,6 +3,7 @@ package dev.jlkesh.stackoverflowdemo.domains;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
@@ -15,6 +16,7 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 public class AuthUser {
 
     @Id
@@ -40,7 +42,7 @@ public class AuthUser {
 
     @ManyToMany(targetEntity = AuthRole.class,
             cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY)
+            fetch = FetchType.EAGER)
     @JoinTable(
             name = "auth_user_auth_role",
             schema = "stackoverflowapp",

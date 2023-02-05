@@ -14,7 +14,7 @@ public class AuthUserCreateDTO {
     private String username;
 
     @NotBlank(message = "Password can not be blank")
-    @Pattern(regexp = "^(?=.*[a-z]+)(?=.*[A-Z]+)(?=.*\\\\d+)(?=.*[!@#$&*?><]+).{8,30}$", message = "Password did not match requirements")
+    // @Pattern(regexp = "^(?=.*[a-z]+)(?=.*[A-Z]+)(?=.*\\\\d+)(?=.*[!@#$&*?><]+).{8,30}$", message = "Password did not match requirements")
     private String password;
     @NotBlank(message = "Confirm Password can not be blank")
     private String confirmPassword;
