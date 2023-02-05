@@ -13,9 +13,9 @@ import org.springframework.stereotype.Service;
 public record AuthUserService(AuthUserRepository authUserRepository, PasswordEncoder passwordEncoder) {
     public AuthUser save(@NonNull AuthUserCreateDTO dto) {
         AuthUser authUser = AuthUser.builder()
-                .username(dto.username())
-                .password(passwordEncoder.encode(dto.password()))
-                .email(dto.email())
+                .username(dto.getUsername())
+                .password(passwordEncoder.encode(dto.getPassword()))
+                .email(dto.getEmail())
                 .status(AuthUser.Status.ACTIVE)
                 .build();
         authUserRepository.save(authUser);

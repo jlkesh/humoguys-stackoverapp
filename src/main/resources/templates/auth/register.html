@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
 <head>
     <meta charset="UTF-8">
     <title>Register Page</title>
@@ -14,23 +16,26 @@
 <div class="row mt-5">
     <div class="col-md-6 offset-3">
         <h1 style="text-align: center">Register</h1>
-        <form method="post" th:action="@{~/auth/register/}">
+        <form method="post" th:action="@{~/auth/register/}" th:object="${dto}">
             <div class="mb-3">
                 <label for="username" class="form-label">User name</label>
-                <input type="text" class="form-control" name="username" id="username">
+                <input type="text" class="form-control" th:field="*{username}" name="username" id="username">
+                <p class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" name="password" id="password">
+                <input type="password" class="form-control" th:field="*{password}" name="password" id="password">
+                <p class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
             </div>
             <div class="mb-3">
                 <label for="confirm_password" class="form-label">Confirm Password</label>
-                <input type="password" class="form-control" name="confirmPassword" id="confirm_password">
+                <input type="password" class="form-control" th:field="*{confirmPassword}" name="confirmPassword" id="confirm_password">
+                <p class="text-danger" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}">
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
-
+                <input type="email" class="form-control" th:field="*{email}" id="email" name="email" placeholder="name@example.com">
+                <p class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
             </div>
             <a th:href="@{~/auth/login}" class="btn btn-info">Login</a>
             <button type="submit" class="btn btn-success">Register</button>

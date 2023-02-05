@@ -4,7 +4,9 @@ package dev.jlkesh.stackoverflowdemo.controllers;
 import dev.jlkesh.stackoverflowdemo.dtos.AuthUserCreateDTO;
 import dev.jlkesh.stackoverflowdemo.services.AuthUserService;
 import jakarta.validation.Valid;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,14 +35,15 @@ public class AuthController {
     }
 
     @GetMapping("/register/")
-    public String registerPage() {
+    public String registerPage(Model model) {
+        model.addAttribute("dto", new AuthUserCreateDTO());
         return "auth/register";
     }
 
     @PostMapping("/register/")
-    public String register(@Valid @ModelAttribute AuthUserCreateDTO dto, BindingResult result) {
-        if (result.hasErrors()){
-
+    public String register(@Valid @ModelAttribute(name = "dto") AuthUserCreateDTO dto, BindingResult result) {
+        if (result.hasErrors()) {
+            return "auth/register";
         }
         authUserService.save(dto);
         return "redirect:/auth/login/";
