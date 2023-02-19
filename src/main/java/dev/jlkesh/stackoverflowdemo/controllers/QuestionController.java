@@ -10,7 +10,6 @@ import dev.jlkesh.stackoverflowdemo.services.AnswerService;
 import dev.jlkesh.stackoverflowdemo.services.QuestionService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +18,6 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/question")
-@PreAuthorize("isAuthenticated()")
 public class QuestionController {
 
     private final QuestionService questionService;
@@ -54,7 +52,7 @@ public class QuestionController {
     @PostMapping(value = "/update/")
     public String update(@ModelAttribute QuestionUpdateDTO dto) {
         questionService.update(dto);
-        return "index";
+        return "main";
     }
 
     @GetMapping(value = "/delete/{id}/")
@@ -65,6 +63,7 @@ public class QuestionController {
     }
 
     @PostMapping(value = "/delete/{id}/")
+    @PreAuthorize("isAuthenticated()")
     public String delete(@PathVariable Integer id) {
         questionService.delete(id);
         return "redirect:/";

@@ -18,11 +18,12 @@
     <div class="col-md-8 offset-2 mt-5">
         <div class="alert alert-danger" th:text="${question.title}"></div>
 
-        <form method="post">
+        <form method="post" th:action="@{/question/delete/{id}/(id=${question.id})}">
             <h1 class="text-danger">Are you sure delete this question ?</h1>
             <button type="submit" class="btn btn-danger">Delete</button>
             <a href="/" class="btn btn-warning">Back</a>
         </form>
+
     </div>
 </div>
 </body>

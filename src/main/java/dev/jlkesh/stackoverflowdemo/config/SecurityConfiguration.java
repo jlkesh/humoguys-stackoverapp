@@ -9,16 +9,18 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity(prePostEnabled = false)
+@EnableMethodSecurity(
+        prePostEnabled = true,
+        securedEnabled = true,
+        jsr250Enabled = true)
 public class SecurityConfiguration {
 
     public static final String[] WHITE_LIST = {
-            "/",
             "/auth/login/",
             "/auth/register/",
             "/auth/logout/",
-            "/js/**",
-            "/css/**"
+            "/css/**",
+            "/js/**"
     };
 
     /*@Bean

@@ -6,6 +6,7 @@ import dev.jlkesh.stackoverflowdemo.services.AuthUserService;
 import jakarta.validation.Valid;
 import org.springframework.boot.Banner;
 import org.springframework.boot.web.reactive.error.ErrorAttributes;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.*;

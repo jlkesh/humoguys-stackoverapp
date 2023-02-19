@@ -2,3 +2,10 @@
     cursor: pointer;
     color: #760404;
 }
+
+.border-grey-2 {
+    border: 1px solid darkgrey;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 5px;
+}

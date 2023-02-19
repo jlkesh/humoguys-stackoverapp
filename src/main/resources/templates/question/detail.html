@@ -27,10 +27,11 @@
 <div class="row">
     <div class="col-md-8 offset-2">
         <div class="m-2 p-2">
-            <h2 th:text="${question.title}"></h2>
-
-            <div class="ms-5">
+            <div class="border-grey-2">
+                <h2 th:text="${question.title}"></h2>
                 <h4 th:text="${question.content}" class="m-2"></h4>
+            </div>
+            <div class="ms-5">
                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <i class="fa fa-sharp fa-solid fa-plus-large"></i>
                     Leave Your Answer
